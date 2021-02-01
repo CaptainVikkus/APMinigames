@@ -12,23 +12,17 @@ public class ExtractorController : MonoBehaviour
 {
     public ExtractorMode mode;
     public int resourceTotal;
+    public ResourceGenerator grid;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        grid.GenerateNodes();
     }
 
-    // Update is called once per frame
-    void Update()
+    //Extraction = 0, Scanning = 1
+    public void ChangeMode(int newMode)
     {
-        
-    }
-
-    public void ChangeMode(ExtractorMode newMode)
-    {
-        mode = newMode;
+        mode = (ExtractorMode)newMode;
     }
 
     public void AddResource(int resource)
