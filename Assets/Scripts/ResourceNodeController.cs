@@ -47,4 +47,11 @@ public class ResourceNodeController : MonoBehaviour
         }
 
     }
+
+    public int Collect()
+    {
+        int collected = resource;
+        SetLevel(Level.NONE);
+        return collected;
+    }
 }

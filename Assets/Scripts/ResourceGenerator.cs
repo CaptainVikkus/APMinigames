@@ -14,12 +14,16 @@ public class ResourceGenerator : MonoBehaviour
 
     public GameObject node;
     private GameObject[,] nodeGrid;
+    public Camera resCam;
+    public float camHeight = 30;
+    public RenderTexture screenTex;
     private float nodeOffset = 4.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         Assert.IsNotNull(node.GetComponent<ResourceNodeController>());
+        resCam.targetTexture = screenTex;
     }
 
     public void GenerateNodes()
@@ -54,6 +58,9 @@ public class ResourceGenerator : MonoBehaviour
                 PopulateNodes(x, y);
             }
         }
+        //Set Camera position
+        resCam.transform.localPosition = new Vector3((rows * nodeOffset / 2)- 2, camHeight, (columns * nodeOffset / 2)- 2);
+        resCam.orthographicSize = rows / 2.5f;
     }
 
     //Populate the resources in a 5x5 around a high value node
@@ -95,8 +102,17 @@ public class ResourceGenerator : MonoBehaviour
         //Check that picked node is within the boundaries for the grid
         if ((row >= 0 && row < rows) && (column >= 0 && column < columns))
         {
-            Debug.Log(row + " " + column);
+            //Debug.Log(row + " " + column);
             nodeGrid[row, column].GetComponent<ResourceNodeController>().SetLevel(level);
         }
+    }
+
+    //Return resource from valid node, otherwise 0
+    public int CollectNode(int row, int col)
+    {
+        if ((row >= 0 && row < rows) && (col >= 0 && col < columns))
+            return nodeGrid[row, col].GetComponent<ResourceNodeController>().Collect();
+        else
+            return 0;
     }
 }
