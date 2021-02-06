@@ -23,9 +23,12 @@ public class ExtractorController : MonoBehaviour
 
     public LayerMask scanMask;
     public LayerMask extractMask;
-    public int tries = 3;
-    private int currTry;
-    public TextMeshProUGUI triesUI;
+    public int extractTry = 3;
+    private int currExTry;
+    public int scanTry = 6;
+    private int currScnTry;
+    public TextMeshProUGUI ExtractTriesUI;
+    public TextMeshProUGUI ScanTriesUI;
     public TextMeshProUGUI resourceUI;
 
     public void Start()
@@ -49,15 +52,13 @@ public class ExtractorController : MonoBehaviour
                 {
                     button.GetComponent<BoxCollider>().enabled = true;
                 }
-                grid.resCam.cullingMask = extractMask;
                 Debug.Log("Extract Mode Activated");
                 break;
             case ExtractorMode.SCANNING:
                 foreach (var button in buttonGrid)
                 {
-                    button.GetComponent<BoxCollider>().enabled = false;
+                    button.GetComponent<BoxCollider>().enabled = true;
                 }
-                grid.resCam.cullingMask = scanMask;
                 Debug.Log("Scan Mode Activated");
                 break;
             case ExtractorMode.COMPLETE:
@@ -74,14 +75,24 @@ public class ExtractorController : MonoBehaviour
 
     public void CollectResource(int row, int col)
     {
-        if (currTry >= 1)
+        if (currExTry >= 1)
         {
             resourceTotal += grid.CollectNode(row, col);
-            currTry--;
+            currExTry--;
         }
-        if (currTry <= 0)
+        if (currExTry <= 0)
         {
             ChangeMode((int)ExtractorMode.COMPLETE);
+        }
+        UpdateUI();
+    }
+
+    public void ScanResource(int row, int col, float radius)
+    {
+        if (currScnTry >= 1)
+        {
+            grid.ScanNode(row, col, radius);
+            currScnTry--;
         }
         UpdateUI();
     }
@@ -115,7 +126,8 @@ public class ExtractorController : MonoBehaviour
 
     public void ResetGrid()
     {
-        currTry = tries;
+        currExTry = extractTry;
+        currScnTry = scanTry;
         if (buttonGrid != null)
         {
             foreach (var button in buttonGrid)
@@ -135,7 +147,8 @@ public class ExtractorController : MonoBehaviour
 
     public void UpdateUI()
     {
-        triesUI.text = "Tries Left: " + currTry.ToString();
+        ExtractTriesUI.text = currExTry.ToString() + " / " + extractTry.ToString();
+        ScanTriesUI.text = currScnTry.ToString() + " / " + scanTry.ToString();
         resourceUI.text = resourceTotal.ToString();
     }
 }

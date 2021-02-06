@@ -115,4 +115,16 @@ public class ResourceGenerator : MonoBehaviour
         else
             return 0;
     }
+
+    public void ScanNode(int row, int col, float radius)
+    {
+        //Scan a sphere around the node 
+        Collider[] hits = Physics.OverlapSphere(nodeGrid[row, col].transform.position, radius);
+        foreach (var item in hits)
+        {
+            var node = item.gameObject.GetComponent<ResourceNodeController>();
+            if (node)
+                node.Scan();
+        }
+    }
 }

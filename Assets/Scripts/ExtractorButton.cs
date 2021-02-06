@@ -12,10 +12,23 @@ public class ExtractorButton : MonoBehaviour
 
     public void Extract()
     {
-        if (!collected)
+        switch (controller.mode)
         {
-            controller.CollectResource(row, col);
-            collected = true;
+            case ExtractorMode.EXTRACTION:
+                if (!collected)
+                {
+                    controller.CollectResource(row, col);
+                    collected = true;
+                }
+                break;
+            case ExtractorMode.SCANNING:
+                controller.ScanResource(row, col, 3.0f);
+                break;
+            case ExtractorMode.COMPLETE:
+                break;
+            default:
+                break;
         }
     }
+
 }

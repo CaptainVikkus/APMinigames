@@ -52,6 +52,12 @@ public class ResourceNodeController : MonoBehaviour
     {
         int collected = resource;
         SetLevel(Level.NONE);
+        Scan();
         return collected;
+    }
+
+    public void Scan()
+    {
+        plane.SetActive(true);
     }
 }
