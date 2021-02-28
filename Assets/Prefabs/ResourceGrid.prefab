@@ -115,13 +115,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6227220465225084136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6faa26a9018c4f24f9e960689619d091, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e4adfa954d7a04d9c8421104b59ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rows: 32
   columns: 32
-  numHigh: 0
+  numHigh: 6
   node: {fileID: 6227787307785357279, guid: 0b1f4ffc6f7277647bed639979f71455, type: 3}
   resCam: {fileID: 2051356543567959726}
-  camHeight: 300
-  screenTex: {fileID: 0}
+  camHeight: 30
+  screenTex: {fileID: 8400000, guid: cd8f4fddc11313942ab461091eef7fad, type: 2}
