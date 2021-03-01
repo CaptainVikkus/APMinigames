@@ -11,10 +11,19 @@ public class LockNode : MonoBehaviour
     public Vector3 startPos;
     private Vector2 mousePrev;
     private Vector2 mouseDelta;
+    public LineRenderer line;
 
     private void Start()
     {
         startPos = transform.localPosition;
+        if (isStart)
+        {//Set up Line
+            line = gameObject.AddComponent<LineRenderer>();
+            line.positionCount = 2;
+            line.widthMultiplier = 0.05f;
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, transform.position);
+        }
     }
 
     private Vector2 ConvertMousetoWorld()
@@ -29,6 +38,11 @@ public class LockNode : MonoBehaviour
     {
         Debug.Log("Node Hit");
         mousePrev = ConvertMousetoWorld();
+        if (isStart)
+        {
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, transform.position);
+        }
     }
 
     public void OnMouseDrag()
@@ -38,6 +52,7 @@ public class LockNode : MonoBehaviour
             mouseDelta = ConvertMousetoWorld() - mousePrev;
             mousePrev = ConvertMousetoWorld();
             transform.localPosition += new Vector3(mouseDelta.x, mouseDelta.y, 0);
+            line.SetPosition(1, transform.position);
         }
     }
 
@@ -46,6 +61,7 @@ public class LockNode : MonoBehaviour
         if (!isLocked)
         {
             transform.localPosition = startPos;
+            line.SetPosition(1, transform.position);
         }
     }
 
@@ -61,6 +77,7 @@ public class LockNode : MonoBehaviour
                 node.transform.localPosition.y,
                 node.transform.localPosition.z
                 );
+            line.SetPosition(1, transform.position);
         }
     }
 }

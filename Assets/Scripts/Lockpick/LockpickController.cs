@@ -67,6 +67,9 @@ public class LockpickController : MonoBehaviour
             item.transform.localPosition = item.startPos;
             item.isLocked = false;
             item.nodeType = (Node)choice[i];
+            item.line.material = nodeMat[choice[i]];
+            item.line.SetPosition(0, transform.position);
+            item.line.SetPosition(1, transform.position);
             item.GetComponent<MeshRenderer>().material = nodeMat[choice[i++]];
         }
         //Randomize the End Node Colors
@@ -105,5 +108,10 @@ public class LockpickController : MonoBehaviour
             if (OnLockpickEnd != null)
                 OnLockpickEnd(false);
         }
+    }
+
+    public void SetDifficulty(int i)
+    {
+        difficulty = Mathf.Abs(i);
     }
 }

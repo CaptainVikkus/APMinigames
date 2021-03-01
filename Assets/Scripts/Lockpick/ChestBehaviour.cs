@@ -6,6 +6,7 @@ using UnityEngine;
 public class ChestBehaviour : MonoBehaviour
 {
     public Animation lidOpen;
+    public Collider lockSpot;
     public TextMeshProUGUI message;
     public TextMeshProUGUI button;
     public LockpickController lockBox;
@@ -26,6 +27,7 @@ public class ChestBehaviour : MonoBehaviour
             lidOpen.Play();
             message.text = "Access Granted";
             message.fontSize = 1;
+            lockSpot.enabled = false;
         }
         else
         {
@@ -38,12 +40,14 @@ public class ChestBehaviour : MonoBehaviour
 
     public void ResetBox()
     {
+        message.text = "Insert Key";
+        message.fontSize = 2;
+        button.text = "Open";
+
         if (won)
         {
-            message.text = "Insert Key";
-            message.fontSize = 2;
-            button.text = "Open";
             lidOpen.Play("LidClose");
+            lockSpot.enabled = true;
         }
     }
 }

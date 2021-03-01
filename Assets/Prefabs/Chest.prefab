@@ -5610,6 +5610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lidOpen: {fileID: 6666936532742778062}
+  lockSpot: {fileID: 692317626063996513}
   message: {fileID: 3011310551132865149}
   button: {fileID: 3011310550051288507}
   lockBox: {fileID: 5989078251876844512}
