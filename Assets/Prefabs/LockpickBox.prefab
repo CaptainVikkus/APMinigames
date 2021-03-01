@@ -112,6 +112,7 @@ MonoBehaviour:
   nodeType: 0
   isLocked: 0
   isStart: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2510805765166310210
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +225,7 @@ MonoBehaviour:
   nodeType: 0
   isLocked: 0
   isStart: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2591446744736888642
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +408,7 @@ MonoBehaviour:
   nodeType: 0
   isLocked: 0
   isStart: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!1 &3230524810048325062
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +495,7 @@ MonoBehaviour:
   - {fileID: 1986275838805500152}
   - {fileID: 9150784024531125930}
   - {fileID: 3426488296736333815}
-  shutter: {fileID: 0}
+  shutter: {fileID: 5435274258952011328}
   green: {fileID: 2100000, guid: 072e143182267ba4d9b7c8438e5d6002, type: 2}
   yellow: {fileID: 2100000, guid: 8f3805f5182b98749aaf5b7380230916, type: 2}
   blue: {fileID: 2100000, guid: e1c511e72bf161c4b81d02950f2d495d, type: 2}
@@ -509,6 +512,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: b78de11c64faad54cafd4026a4a46102, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: b78de11c64faad54cafd4026a4a46102, type: 2}
+  - {fileID: 7400000, guid: 22c947f9c984d4a499fa36d966cba2d3, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -526,6 +530,7 @@ GameObject:
   - component: {fileID: 3225329049297155356}
   - component: {fileID: 1013010088348278360}
   - component: {fileID: 3404840600814650143}
+  - component: {fileID: 2938811084129081845}
   m_Layer: 0
   m_Name: BottomNode
   m_TagString: Untagged
@@ -625,6 +630,23 @@ MonoBehaviour:
   nodeType: 0
   isLocked: 0
   isStart: 1
+  startPos: {x: 0, y: 0, z: 0}
+--- !u!54 &2938811084129081845
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287350630693874799}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &7262325668684493535
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +693,7 @@ GameObject:
   - component: {fileID: 1547332605680587414}
   - component: {fileID: 3530047186933296855}
   - component: {fileID: 1787846972326870675}
+  - component: {fileID: 7794770395010894421}
   m_Layer: 0
   m_Name: MiddleNode
   m_TagString: Untagged
@@ -770,6 +793,23 @@ MonoBehaviour:
   nodeType: 0
   isLocked: 0
   isStart: 1
+  startPos: {x: 0, y: 0, z: 0}
+--- !u!54 &7794770395010894421
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984085954092527939}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &8044687558930055352
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,6 +823,7 @@ GameObject:
   - component: {fileID: 53217987846270495}
   - component: {fileID: 2419066801457976649}
   - component: {fileID: 9098215911563548038}
+  - component: {fileID: 6518377596604610153}
   m_Layer: 0
   m_Name: TopNode
   m_TagString: Untagged
@@ -882,6 +923,23 @@ MonoBehaviour:
   nodeType: 0
   isLocked: 0
   isStart: 1
+  startPos: {x: 0, y: 0, z: 0}
+--- !u!54 &6518377596604610153
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8044687558930055352}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &8380659135089606118
 GameObject:
   m_ObjectHideFlags: 0

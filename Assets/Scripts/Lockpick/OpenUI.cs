@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class OpenUI : MonoBehaviour
 {
-    public Canvas ui;
+    public GameObject ui;
+    public CameraController player;
+    public List<Canvas> playerUI;
     public bool triggerImediate = true;
     private bool entered = false;
     private bool change = false;
 
-    private void Start()
+    protected virtual void Start()
     { //Only Start update if triggerImediate is false
         if (triggerImediate)
             StartCoroutine(UICheck());
@@ -49,10 +51,16 @@ public class OpenUI : MonoBehaviour
         change = true;
     }
 
-    private void EnableUI(bool enable)
+    protected virtual void EnableUI(bool enable)
     {
         //Set UI Visibility
-        ui.enabled = enable;
+        ui.SetActive(enable);
         //Lock/Unlock Player
+        player.enabled = !enable;
+        foreach (var ui in playerUI)
+        {
+            ui.enabled = !enable;
+        }
+        Cursor.lockState = enable ? CursorLockMode.Confined : CursorLockMode.Locked;
     }
 }

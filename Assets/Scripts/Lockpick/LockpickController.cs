@@ -21,12 +21,19 @@ public class LockpickController : MonoBehaviour
     public Material blue;
     #endregion
     #region Settings
-    [Range(1, 10)]
+    [Range(1, 5)]
     [Tooltip("Changes the playback speed of the minigame")]
     public int difficulty = 1;
     #endregion
 
+    #region Events
+    public delegate void LockPickEnd(bool won);
+    public event LockPickEnd OnLockpickEnd;
+    #endregion
+
     private Material[] nodeMat = new Material[3];
+    private int[] choice = { 0, 1, 2 };
+    private bool playing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,14 +41,20 @@ public class LockpickController : MonoBehaviour
         nodeMat[(int)Node.GREEN] = green;
         nodeMat[(int)Node.YELLOW] = yellow;
         nodeMat[(int)Node.BLUE] = blue;
-
-        shutter.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (startNodes[0].isLocked && startNodes[1].isLocked && startNodes[2].isLocked && playing)
+        {//Completed
+            shutter.Stop();
+            if (OnLockpickEnd != null)
+            {
+                OnLockpickEnd(true);
+            }
+            playing = false;
+        }
     }
 
     public void Init()
@@ -51,25 +64,46 @@ public class LockpickController : MonoBehaviour
         int i = 0;
         foreach (var item in startNodes)
         {
-            item.GetComponent<MeshRenderer>().material = nodeMat[i++];
+            item.transform.localPosition = item.startPos;
+            item.isLocked = false;
+            item.nodeType = (Node)choice[i];
+            item.GetComponent<MeshRenderer>().material = nodeMat[choice[i++]];
         }
         //Randomize the End Node Colors
         RandomizeColors();
         i = 0;
         foreach (var item in endNodes)
         {
-            item.GetComponent<MeshRenderer>().material = nodeMat[i++];
+            item.nodeType = (Node)choice[i];
+            item.GetComponent<MeshRenderer>().material = nodeMat[choice[i++]];
         }
     }
 
     private void RandomizeColors()
     {
-        for (int i = 0; i < nodeMat.Length -1; i++)
+        for (int i = 0; i < choice.Length -1; i++)
         {
-            int t = Random.Range(i, nodeMat.Length);
-            var temp = nodeMat[i];
-            nodeMat[i] = nodeMat[t];
-            nodeMat[t] = temp;
+            int t = Random.Range(i, choice.Length);
+            var temp = choice[i];
+            choice[i] = choice[t];
+            choice[t] = temp;
+        }
+    }
+
+    public void ShutterOpen()
+    {
+        //Start Checking
+        playing = true;
+        shutter["ShutterClose"].speed = difficulty/20.0f;
+        shutter.Play("ShutterClose");
+    }
+    public void ShutterClose()
+    {
+        if (playing) //shutter closed midgame
+        {
+            playing = false;
+            if (OnLockpickEnd != null)
+                OnLockpickEnd(false);
         }
     }
 }
