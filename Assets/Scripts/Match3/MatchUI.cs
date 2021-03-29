@@ -8,6 +8,7 @@ public class MatchUI : OpenUI
     public Match3 match;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI movesText;
+    private bool isWon = false;
 
     protected override void EnableUI(bool enable)
     {
@@ -34,6 +35,14 @@ public class MatchUI : OpenUI
         if (movesLeft <= 0)
         {
             match.LockBoard(true);
+        }
+        if (match.score >= match.targetScore)
+        {
+            if (!isWon) //only call once
+            {
+                WinHandler.CallWin(match.difficulty);
+                isWon = true;
+            }
         }
     }
 

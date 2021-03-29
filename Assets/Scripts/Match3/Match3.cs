@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Match3 : MonoBehaviour
 {
-    private enum Difficulty
+    public enum Difficulty
     {
         Easy,
         Medium,
@@ -17,7 +17,7 @@ public class Match3 : MonoBehaviour
     [Header("Gameplay")]
     public int width = 9;
     public int height = 9;
-    [SerializeField] private Difficulty difficulty = Difficulty.Easy;
+    public Difficulty difficulty = Difficulty.Easy;
     [Tooltip("Medium and Hard only")] public float blockChance = 0.1f;
     [Tooltip("Hard only")] public float hazardChance = 0.02f;
     public int targetScore = 1000;
