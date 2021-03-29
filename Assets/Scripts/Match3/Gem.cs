@@ -72,6 +72,7 @@ public class Gem
 {
     public GemType type;
     public Point location;
+    public GemPiece piece;
 
     public Gem(GemType t, Point p)
     {

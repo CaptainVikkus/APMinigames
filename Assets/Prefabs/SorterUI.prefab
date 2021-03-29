@@ -329,6 +329,9 @@ MonoBehaviour:
   difficulty: 0
   blockChance: 0.1
   hazardChance: 0.02
+  targetScore: 1000
+  totalMoves: 20
+  pieceValue: 1
   gameBoard: {fileID: 8766119197910689615}
   gemPrefab: {fileID: 7125540553438375921, guid: 25b6f6d66a6175549a62c564497ce98f, type: 3}
   pieces:
@@ -338,6 +341,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9e5e83f5cfb5acb4ab85ab5199c57d20, type: 3}
   - {fileID: 21300000, guid: 7587e3de48c2c5746b27ac50b5803d1b, type: 3}
   - {fileID: 21300000, guid: f7e30b418716a334e8e7d890b2383f75, type: 3}
+  score: 0
+  moves: 0
+  multiplier: 1
 --- !u!1 &8766119198168425320
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +783,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8766119198629059502}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8766119198151479550}
+        m_TargetAssemblyTypeName: Match3, Assembly-CSharp
+        m_MethodName: BuildGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8766119199032752898
 GameObject:
   m_ObjectHideFlags: 0
