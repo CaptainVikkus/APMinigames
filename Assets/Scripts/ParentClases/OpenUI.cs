@@ -61,6 +61,6 @@ public class OpenUI : MonoBehaviour
         {
             ui.enabled = !enable;
         }
-        Cursor.lockState = enable ? CursorLockMode.Confined : CursorLockMode.Locked;
+        AppEvents.Invoke_OnMouseCursorEnable(enable);
     }
 }
